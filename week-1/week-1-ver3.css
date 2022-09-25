@@ -1,0 +1,142 @@
+html{
+    font-size: 20px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.frame{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.left{
+    flex: none;
+    width: 150px;
+    margin: 10px;
+}
+.right{
+    flex: auto;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+.item{
+    flex: none;
+    width: 80px;
+    margin-right: 10px;
+    text-align: right;
+}
+.desktop-menu{
+    display: block;
+}
+.mobile-menu{
+    display: none;
+}
+.welcome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    background-color: aquamarine;
+}
+.text{
+    width: 500px; height: auto;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+.list{
+    display: flex;
+    justify-content: center;  
+}
+.title{
+    flex: none;
+    width: 280px;
+    margin: 10px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.image1{
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    object-fit: cover;
+    vertical-align: top;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.image2{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 30px;
+    width: 30px;
+}
+.title-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFFCC;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0px;
+}
+.promotion{
+    flex: none;
+    display: flex;
+    width: 580px;
+    height: 50px;
+    margin: 10px;
+    background-color: rgb(127, 232, 255);
+    align-items: center;
+}
+.promotion-text{
+    padding-left: 10px;   
+}
+.side-menu{
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 0 10px rgba(169, 169, 169, 0.6);
+    position: fixed;
+    right: 0;
+    top:0;
+}
+nav p{
+    display: block;
+    padding: 10px;
+    text-align: center;
+}
+@media (max-width:1200px) {
+    .list{
+        flex-wrap: wrap;
+    }
+    .title{
+        width: 45%;
+    }
+    .promotion{
+        width: 45%;
+    }
+}
+@media (max-width:600px) {
+    .title{
+        width: 90%;
+    }
+    .promotion{
+        width: 90%;
+    }
+    .desktop-menu{
+        display: none;
+    }
+    .mobile-menu{
+        display: block;
+        display: flex;
+        justify-content: center;
+    }
+}
