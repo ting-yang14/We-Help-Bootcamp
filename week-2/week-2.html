@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewpoert" content = "width=device-width, initial-scale=1.0" />
+        <meta chatset = "utf-8" />
+        <title>week-2</title>
+    </head>
+    <body>
+        <script>
+        // 要求一
+        function calculate(min, max, step){
+            let sum=0;
+            for (let n=min; n<=max; n+=step){
+                sum+=n;               
+            }
+            console.log(sum);
+        }
+
+        calculate(1, 3, 1); // 你的程式要能夠計算 1+2+3，最後印出 6 
+        calculate(4, 8, 2); // 你的程式要能夠計算 4+6+8，最後印出 18 
+        calculate(-1, 2, 2); // 你的程式要能夠計算 -1+1，最後印出 0
+
+        // 要求二
+        function avg(data){
+            let sum=0;
+            let numberOfEmployee=0
+            for (let i in data.employees){
+                if(data.employees[i].manager==false){
+                    numberOfEmployee+=1;
+                    sum+=data.employees[i].salary;
+                }
+            }
+            console.log(sum/numberOfEmployee); 
+        }
+
+        avg({
+            "employees":[
+                {   
+                    "name":"John", 
+                    "salary":30000, 
+                    "manager":false
+                },
+                {   
+                    "name":"Bob", 
+                    "salary":60000, 
+                    "manager":true
+                },
+                {
+                    "name":"Jenny", 
+                    "salary":50000, 
+                    "manager":false
+                },
+                {   
+                    "name":"Tony", 
+                    "salary":40000, 
+                    "manager":false
+                }
+            ]
+        }); // 呼叫 avg 函式
+
+        // 要求三
+        function func(a){
+            function multiply(b,c){
+                console.log(a+b*c)
+            }
+            return multiply
+        } 
+        
+        func(2)(3, 4); // 你補完的函式能印出 2+(3*4) 的結果 14 
+        func(5)(1, -5); // 你補完的函式能印出 5+(1*-5) 的結果 0 
+        func(-3)(2, 9); // 你補完的函式能印出 -3+(2*9) 的結果 15 
+        // 一般形式為 func(a)(b, c) 要印出 a+(b*c) 的結果
+
+        // 要求四
+        function maxProduct(nums){
+            let nLen=nums.length;
+            let max=nums[0]*nums[1];
+            if (nLen>2){
+                // 若寫 for (let i in nums) 這裡的 typeof i=string, 則 j=i+1, j=01(string), 因此直接訂 i=0(number)
+                for (let i=0; i<nLen; i++){ //
+                    for(let j=i+1; j<nLen; j++){  //原本寫 j=i+1, j=01(string), 因此改成直接訂 j= 1(number)
+                        let temp=nums[i]*nums[j]
+                        if (temp>max){
+                            max=temp;
+                        }
+                    }
+                }
+            }
+            console.log(max)
+        }
+
+        maxProduct([5, 20, 2, 6]); // 得到 120 
+        maxProduct([10, -20, 0, 3]); // 得到 30 
+        maxProduct([10, -20, 0, -3]); // 得到 60 
+        maxProduct([-1, 2]); // 得到 -2 
+        maxProduct([-1, 0, 2]); // 得到 0 或 -0 
+        maxProduct([5, -1, -2, 0]); // 得到 2 
+        maxProduct([-5, -2]); // 得到 10
+
+        // 要求五
+        function twoSum(nums, target){
+            let nLen=nums.length;
+            for (let i=0; i<nLen; i++){
+                for(let j=i+1; j<nLen; j++){
+                    if (target-nums[i]==nums[j]){
+                        return [i, j]
+                    }
+                }
+            }
+            // nLen=nums.length;
+            // const numMap= new Map();
+            // for (let i=0; i<nLen; i++){
+            //     let difference=target-nums[i];
+            //     if (numMap.has(difference)){
+            //         return [numMap.get(difference), i]
+            //     }
+            //     numMap.set(nums[i], i);
+            // }
+        }
+        
+        let result=twoSum([2, 11, 7, 15], 9);
+        console.log(result); // show [0, 2] because nums[0]+nums[2] is 99
+
+        // 要求六(optional)
+        function maxZeros(nums){
+            let nLen=nums.length
+            let nZero=0;
+            let maxLength=0;
+            for (let i=0; i<nLen; i++){
+                if (nums[i]==0){
+                    nZero+=1;
+                } else {
+                    if (nZero>maxLength){
+                        maxLength=nZero; 
+                        nZero=0;
+                    }
+                }
+            }
+            if (nZero>maxLength){
+                console.log(nZero);
+            } else {
+                console.log(maxLength);
+            } 
+        }
+        maxZeros([0, 1, 0, 0]); // 得到 2
+        maxZeros([1, 0, 0, 0, 0, 1, 0, 1, 0, 0]); // 得到 4 
+        maxZeros([1, 1, 1, 1, 1]); // 得到 0 
+        maxZeros([0, 0, 0, 1, 1]); // 得到 3
+        </script>
+    </body>
+</html>
