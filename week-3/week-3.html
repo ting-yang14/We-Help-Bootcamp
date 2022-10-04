@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewpoert" content="width=device-width, initial-scale=1.0"/>
+        <meta chatset="utf-8"/>
+        <title>My Website</title>
+        <link rel="stylesheet" type="text/css" href="week-3.css"/>
+    </head>
+    <body>
+        <div class="frame">
+            <div class="left">My Website</div>
+            <div class="right">
+                <div class="item desktop-menu">Item 1</div>
+                <div class="item desktop-menu">Item 2</div>
+                <div class="item desktop-menu">Item 3</div>
+                <div class="item desktop-menu">Item 4</div>
+                <div class="mobile-menu">
+                    <img  src="hamburger_menu_list.png"/ width="23px" height="23px">
+                </div>
+            </div>
+        </div>
+
+        <div class="welcome">
+            <div class="text">Welcome to MyHome</div>
+        </div>
+
+        <div>
+            <div class="list" id="proList"></div>
+        </div>
+
+        <div>
+            <div class="list" id="titleList">
+            </div>
+            <div class="list" id="titleList2">
+            </div>
+        </div>
+        
+        <script>
+            function createTitleListItem(imgSrc, stitle){
+                let newDiv=document.createElement("div");
+                newDiv.className="title";
+                let img=document.createElement("img");
+                img.src= imgSrc;
+                newDiv.appendChild(img);
+                let textDiv=document.createElement("div");
+                textDiv.className="title-text";
+                let textnode=document.createTextNode(stitle);
+                textDiv.appendChild(textnode);
+                newDiv.appendChild(textDiv);
+                return newDiv
+            }
+            function createProListItem(imgSrc, stitle){
+                let newDiv=document.createElement("div");
+                newDiv.className="promotion";
+                let img=document.createElement("img");
+                img.src= imgSrc;
+                img.style.height="50px";
+                img.style.width="80px";
+                newDiv.appendChild(img);
+                let textDiv=document.createElement("div");
+                textDiv.className="promotion-text";
+                let textnode=document.createTextNode(stitle);
+                textDiv.appendChild(textnode);
+                newDiv.appendChild(textDiv);
+                return newDiv
+            }
+
+            function getData(){
+                // 利用 fetch 進行連線並取得資料
+                fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function(response){
+                    return response.json();
+                }).then(function(data){
+                    const attractionList=data.result.results;
+                    const str="https";
+                    let proList=document.getElementById("proList");
+                    let titleList=document.getElementById("titleList");
+                    let titleList2=document.getElementById("titleList2");
+                    // 建立 promotionItem 在 proList 
+                    for (let i=0; i<2; i++){
+                        let newDiv=createProListItem(str.concat(attractionList[i].file.split(str)[1]),attractionList[i].stitle)
+                        proList.appendChild(newDiv);
+                    }
+                    // 建立 titleItem 在 titleList 
+                    for (let i=2; i<6; i++){
+                        let newDiv=createTitleListItem(str.concat(attractionList[i].file.split(str)[1]),attractionList[i].stitle)
+                        titleList.appendChild(newDiv);
+                    }
+                    // 建立 titleItem 在 titleList2
+                    for (let i=6; i<10; i++){
+                        let newDiv=createTitleListItem(str.concat(attractionList[i].file.split(str)[1]),attractionList[i].stitle)
+                        titleList2.appendChild(newDiv);
+                    } 
+                })
+            }
+            getData();
+        </script>
+    </body>
+</html>
