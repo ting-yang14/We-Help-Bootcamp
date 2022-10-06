@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewpoert" content="width=device-width, initial-scale=1.0"/>
+        <meta chatset="utf-8"/>
+        <title>My Website</title>
+        <link rel="stylesheet" type="text/css" href="week-3-ver-3.css"/>
+    </head>
+    <body>
+        <div class="frame">
+            <div class="left">My Website</div>
+            <div class="right">
+                <div class="item desktop-menu">Item 1</div>
+                <div class="item desktop-menu">Item 2</div>
+                <div class="item desktop-menu">Item 3</div>
+                <div class="item desktop-menu">Item 4</div>
+                <div class="mobile-menu">
+                    <img  id="hamburgerImg" src="hamburger_menu_list.png"/ width="23px" height="23px">
+                </div>
+            </div>
+        </div>
+
+        <div class="welcome">
+            <div class="text">Welcome to MyHome</div>
+        </div>
+
+        <div class="list" id="proList">
+            <!-- append child div -->
+        </div>
+        <div class="list">
+            <div class="titleList">
+            <!-- append child div -->    
+            </div>
+        </div>
+        
+        <div class="list">
+            <button class="button" onclick="loadMore();">Load More</button>
+        </div>
+        
+        <div class="side-menu desktop-menu" id="sidebar">
+            <nav>
+                <p>Item 1</p>
+                <p>Item 2</p>
+                <p>Item 3</p>
+                <p>Item 4</p>
+            </nav>
+        </div>
+
+        <script>
+            getData();
+            let itemNum=0;
+            const str="https";
+            const hambburgerImg=document.querySelector("#hamburgerImg");
+            const sidebarDiv=document.querySelector("#sidebar");
+
+            hamburgerImg.onclick=function(event){                  
+                sidebarDiv.style.display="block";//點擊出現
+                event.stopPropagation();         //阻止冒泡
+			}
+			// 點選空白消失
+			document.onclick=function(event){
+				sidebarDiv.style.display="none";
+			}
+
+            function createItem(imgSrc, stitle){
+                // create div for img and text
+                const newDiv=document.createElement("div");
+                const img=document.createElement("img");
+                img.src= imgSrc;
+                newDiv.appendChild(img);
+                // append text div to div
+                const textDiv=document.createElement("div");
+                // textDiv.className="promotion-text";
+                const textnode=document.createTextNode(stitle);
+                textDiv.appendChild(textnode);
+                newDiv.appendChild(textDiv);
+                return newDiv
+            }
+
+            function getData(){
+                // 利用 fetch 進行連線並取得資料
+                fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function(response){
+                    return response.json();
+                }).then(function(data){
+                    const attractionList=data.result.results;
+                    const proList=document.getElementById("proList");
+                    const titleList=document.querySelector(".titleList");
+                    // 前兩格 className="promotion", 後面都是 className="promotion"
+                    for (let i=itemNum; i<10; i++){
+                        let newDiv=createItem(str.concat(attractionList[i].file.split(str)[1]),attractionList[i].stitle)
+                        if (i<2){
+                            newDiv.className="promotion";
+                            proList.appendChild(newDiv);
+                        }
+                        else{
+                            newDiv.className="title";
+                            titleList.appendChild(newDiv);
+                        }
+                        // console.log(i); // 檢查目前的 item 編號
+                    }
+                    return itemNum+=10
+                })
+                
+            }
+            
+            function loadMore(){
+                // 利用 fetch 進行連線並取得資料
+                fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function(response){
+                    return response.json();
+                }).then(function(data){
+                    const attractionList=data.result.results;
+                    const titleList=document.querySelector(".titleList");
+                    const endNum=itemNum+8;
+                    // 每次新增 8 個 titleItem
+                    for (let i=itemNum; i<endNum; i++){
+                        let newDiv=createItem(str.concat(attractionList[i].file.split(str)[1]),attractionList[i].stitle);
+                        newDiv.className="title";
+                        titleList.appendChild(newDiv);
+                        // console.log(i); // 檢查目前的 item 編號
+                    }
+                    return itemNum=endNum;
+                })
+            }
+        </script>
+    </body>
+</html>
