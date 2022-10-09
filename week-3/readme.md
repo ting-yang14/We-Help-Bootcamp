@@ -12,3 +12,6 @@
 * week-3-ver-3.html
   * add a "LoadMore" button under the page and hambergur list
   * details: once the "LoadMore" button is clicked, the "titleList" will append 8 items by the origin items. once the hambergur list is clicked, a sidebar on the right will show, and hide when clicking on the page
+* week-3-ver-4.html
+  * add function fetchData() return promise of attractionlist to avoid repeated fetching in showBasicItem() and loadMore()
+  * rename function getData() to showBasicItem()
