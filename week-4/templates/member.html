@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewpoert" content="width=device-width, initial-scale=1.0"/>
+        <meta chatset="utf-8"/>
+        <title>登入成功</title>
+        <link rel="stylesheet" href= "{{ url_for('static', filename='home.css')}}"/>
+    </head>
+    <body>
+        <div class="title">
+            歡迎光臨  {{data}}
+        </div>
+        <div class="result">
+            恭喜您，成功登入系統
+            <br>
+            <a href="/signout">登出系統</a>
+        </div>
+    </body>
+</html>

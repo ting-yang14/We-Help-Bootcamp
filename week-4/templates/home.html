@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewpoert" content="width=device-width, initial-scale=1.0"/>
+        <meta chatset="utf-8"/>
+        <title>歡迎光臨</title>
+        <link rel="stylesheet" href= "{{ url_for('static', filename='home.css')}}"/>
+    </head>
+    <body>
+        <div class="title">
+            歡迎光臨，請輸入帳號密碼
+        </div>
+        <div class="form">
+            <span>登入系統</span>
+            <form action="/signin" method="POST">
+                <label for="username">帳號</label>
+                <input type="text" id="username" name="username"> 
+                <!--name 是 Query String 的名稱-->
+                <br><br>
+                <label for="password">密碼</label>
+                <input type="password" id="password" name="password">
+                <br><br>
+                <input type="submit" value="登入">
+            </form>
+        </div>
+        <hr/>
+        <div>
+            <span>計算正整數的平方</span>
+            <form action="/square">
+                <label for="positiveNum">正整數</label>
+                <input type="text" id="positiveNum" name="positiveNum">
+                <br><br>
+                <input type="submit" value="計算">
+            </form>
+        </div>
+    </body>
+</html>
