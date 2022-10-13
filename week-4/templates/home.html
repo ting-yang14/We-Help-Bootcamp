@@ -16,22 +16,29 @@
                 <label for="username">帳號</label>
                 <input type="text" id="username" name="username"> 
                 <!--name 是 Query String 的名稱-->
-                <br><br>
+                <br>
                 <label for="password">密碼</label>
                 <input type="password" id="password" name="password">
-                <br><br>
+                <br>
                 <input type="submit" value="登入">
             </form>
         </div>
         <hr/>
-        <div>
+        <div class="form">
             <span>計算正整數的平方</span>
-            <form action="/square">
+            <div>
                 <label for="positiveNum">正整數</label>
                 <input type="text" id="positiveNum" name="positiveNum">
-                <br><br>
-                <input type="submit" value="計算">
-            </form>
+                <br>
+                <button id="btn">計算</button>
+            </div>
         </div>
+        <script>
+            const btn=document.getElementById("btn")
+            btn.addEventListener("click", redirect)
+            function redirect(positiveNum){
+                window.location.href = `/square/`+document.getElementById("positiveNum").value;
+            }
+        </script>
     </body>
 </html>
