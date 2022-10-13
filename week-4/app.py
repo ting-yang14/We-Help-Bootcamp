@@ -3,7 +3,7 @@ from flask import request
 from flask import render_template
 from flask import redirect
 from flask import session
-from flask import url_for
+
 # 建立 Application 物件，可以設定靜態檔案的路徑處理
 app=Flask(
     __name__, 
@@ -57,16 +57,9 @@ def signout():
     session.pop("username", None)
     return redirect("/")
 
-# 導向計算結果網址
-@app.route("/square")
-def square():
-    positiveNum=request.args.get("positiveNum")
-    return redirect(url_for(".result", positiveNum=positiveNum))
-
 # 顯示計算結果
 @app.route("/square/<positiveNum>")
 def result(positiveNum):
-    redirect("/square/<positiveNum>")
     result=int(positiveNum)**2
     return render_template("square.html", data=result)
 
