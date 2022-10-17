@@ -25,4 +25,4 @@
 * 使用 SELECT 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留言，資料中須包含留言者會員的姓名。<br/>
 ![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/5-2.png)
 * 使用 SELECT、SQL Aggregate Functions 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留言平均按讚數。<br/>
-![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/4-3.png)
+![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/5-3.png)
