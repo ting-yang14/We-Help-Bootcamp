@@ -17,31 +17,44 @@ insert into good VALUES(3, 1, 3);
 insert into good VALUES(4, 2, 1);
 insert into good VALUES(5, 2, 2);
 insert into good VALUES(6, 3, 3);
-```
- ![image]
-```
 -- inner join 列出被按讚的留言資料
 select * from message inner join good 
 on message.id=good.member_id;
 ```
+![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/add-1.png)
 ```
--- 表現有被按讚的留言編號、留言內容、按讚的會員
+-- 檢視有被按讚的留言編號、留言內容、按讚的會員
 select message.id, message.content, good.member_id 
 from message inner join good 
 on message.id=good.message_id;
 ```
+![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/add-2.png)
 ```
--- 計算留言被讚數
+-- 計算留言編號的讚數
 select message.id, count(*) 
 from message inner join good 
 on message.id=good.message_id 
 group by message.id;
 ```
+![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/add-3.png)
 ```
--- 如果沒按過則按讚
+-- 如果沒按過則按讚，新增對會員編號5對留言編號1按讚
 insert into good (message_id, member_id)
 select * from (select 1, 5) as tmp
 where not exists (
     select member_id from good where member_id = 5
 );
+-- 檢視新增按讚結果
+select message.id, message.content, good.member_id 
+from message inner join good 
+on message.id=good.message_id;
 ```
+![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/add-4.png)
+```
+-- 計算新增後的留言編號讚數
+select message.id, count(*) 
+from message inner join good 
+on message.id=good.message_id 
+group by message.id;
+```
+![image](https://github.com/ting-yang14/We-Help-Bootcamp/blob/main/week-5/img/add-5.png)
