@@ -1,0 +1,22 @@
+html{
+    font-size: 20px;
+}
+body{
+    margin: auto;
+    padding: 0;
+    justify-content: center;
+
+}
+div{
+    text-align: center;
+}
+.header{
+    padding: 20px;
+    background-color: #004B97;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
+.content{
+    padding: 20px;
+}
