@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block title %} member {% endblock %} {% block
+header %} 歡迎光臨，這是會員頁 {% endblock %} {% block content %}
+<div class="content">
+  <div id="sysMessage">{{name}}，歡迎登入系統</div>
+  <br />
+  <a href="/signout">登出系統</a>
+</div>
+<div class="content">
+  查詢會員姓名
+  <br />
+  <input type="text" id="user" name="user" />
+  <button class="button" onclick="findUsername();">查詢</button>
+  <div id="findResult"></div>
+</div>
+<div class="content">
+  更新我的名字
+  <br />
+  <input type="text" id="newName" name="newName" placeholder="輸入新的名字" />
+  <button class="button" onclick="updateName();">更新</button>
+  <div id="updateResult"></div>
+</div>
+<hr />
+<div class="content">
+  <span>快來留言吧</span>
+  <form action="/message" method="POST">
+    <label for="message">內容</label>
+    <input type="text" id="message" name="message" />
+    <br />
+    <input type="submit" value="送出" />
+  </form>
+</div>
+<hr />
+<div class="content">
+  {% for i in range(len) %}
+  <b>{{message_content[i][0]}}：</b>{{message_content[i][1]}}
+  <br />
+  {% endfor %}
+</div>
+<script>
+  const url = "http://127.0.0.1:3000/api/member";
+  let findResult = document.getElementById("findResult");
+  let user = document.getElementById("user");
+  let newName = document.getElementById("newName");
+  let updateResult = document.getElementById("updateResult");
+  let sysMessage = document.getElementById("sysMessage");
+
+  function findUsername() {
+    fetch(`${url}?username=${user.value}`)
+      .then((response) => response.json())
+      .then((data) => {
+        findResult.style.display = "block";
+        findResult.innerHTML = `${data.data.name} (${data.data.username})`;
+      })
+      .catch((err) => {
+        findResult.style.display = "block";
+        findResult.innerHTML = `查無會員`;
+      });
+  }
+
+  function updateName() {
+    fetch(url, {
+      method: "PATCH",
+      body: JSON.stringify({ name: newName.value }),
+      headers: { "Content-type": "application/json; charset=UTF-8" },
+    })
+      .then(() => {
+        updateResult.style.display = "block";
+        updateResult.innerHTML = `更新成功`;
+        sysMessage.innerHTML = `${newName.value}，歡迎登入系統`;
+      })
+      .catch((err) => {
+        updateResult.style.display = "block";
+        updateResult.innerHTML = `更新失敗`;
+      });
+  }
+</script>
+{% endblock %}
