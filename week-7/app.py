@@ -64,7 +64,7 @@ def signout():
     session.pop("username", None)
     return redirect("/")
 
-@app.route("/message", methods=["POST"])
+@app.route("/message", methods = ["POST"])
 def message():
     member_id = session["id"]
     content = request.form["message"]
@@ -72,25 +72,25 @@ def message():
         add_message(member_id, content)
     return redirect("/member")
     
-@app.route("/api/member", methods=["GET"])
+@app.route("/api/member", methods = ["GET"])
 def get():
     if "username" in session:
         try:
             member = request.args.get("username", None)
-            result=get_member_info(member)
+            result = get_member_info(member)
             return jsonify({"data":{"id":result[0],"name":result[1],"username":result[2]}})
         except:
             return jsonify({"data":None})
     return jsonify({"data":None})
 
-@app.route("/api/member", methods=["PATCH"])
+@app.route("/api/member", methods = ["PATCH"])
 def patch():
     if "username" in session:
         try:
-            request_params=request.get_json()
-            new_name=request_params["name"]
+            request_params = request.get_json()
+            new_name = request_params["name"]
             update_member_name(new_name,session["username"])
-            session["name"]=new_name
+            session["name"] = new_name
             return jsonify({"ok":True})
         except:
             return jsonify({"error":True})

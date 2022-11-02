@@ -1,36 +1,32 @@
-{% extends "base.html" %}
-{% block title %} Welcome {% endblock %}
-{% block header %}
-歡迎光臨，請輸入帳號密碼
-{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %} Welcome {% endblock %} {% block
+header %} 歡迎光臨，請輸入帳號密碼 {% endblock %} {% block content %}
 <div class="content">
-    <span>註冊帳號</span>
-    <form action="/signup" method="POST">
-        <label for="name">姓名</label>
-        <input type="text" id="name" name="name">
-        <br>
-        <label for="username">帳號</label>
-        <input type="text" id="username" name="username">
-        <br>
-        <label for="password">密碼</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <input type="submit" value="註冊">
-    </form>
+  <span>註冊帳號</span>
+  <form action="/signup" method="POST">
+    <label for="name">姓名</label>
+    <input type="text" id="name" name="name" />
+    <br />
+    <label for="username">帳號</label>
+    <input type="text" id="username" name="username" />
+    <br />
+    <label for="password">密碼</label>
+    <input type="password" id="password" name="password" />
+    <br />
+    <input type="submit" value="註冊" />
+  </form>
 </div>
-<hr/>
+<hr />
 <div class="content">
-    <span>登入系統</span>
-    <form action="/signin" method="POST">
-        <label for="username">帳號</label>
-        <input type="text" id="username" name="username">
-        <br>
-        <!--name 是 Query String 的名稱-->
-        <label for="password">密碼</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <input type="submit" value="登入">
-    </form>
+  <span>登入系統</span>
+  <form action="/signin" method="POST">
+    <label for="username">帳號</label>
+    <input type="text" id="username" name="username" />
+    <br />
+    <!--name 是 Query String 的名稱-->
+    <label for="password">密碼</label>
+    <input type="password" id="password" name="password" />
+    <br />
+    <input type="submit" value="登入" />
+  </form>
 </div>
 {% endblock %}

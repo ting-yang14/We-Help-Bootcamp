@@ -34,7 +34,7 @@ def add_member(name, username, password):
 
 def check_member(username, password):
     connection = connection_pool.get_connection()
-    cursor=connection.cursor()
+    cursor = connection.cursor()
     sql = "SELECT * FROM member WHERE username = %s AND password = %s"
     adr = (username, password) 
     cursor.execute(sql, adr)
@@ -51,7 +51,7 @@ def check_member(username, password):
 
 def add_message(member_id, content):
     connection = connection_pool.get_connection()
-    cursor=connection.cursor()
+    cursor = connection.cursor()
     sql = "INSERT INTO message (member_id, content) VALUES (%s, %s)"
     val = (member_id, content)
     cursor.execute(sql, val)
@@ -60,7 +60,7 @@ def add_message(member_id, content):
 
 def get_message_content():
     connection = connection_pool.get_connection()
-    cursor=connection.cursor()
+    cursor = connection.cursor()
     sql = "SELECT member.username, message.content FROM member INNER JOIN message ON message.member_id=member.id ORDER BY message.time DESC;"
     cursor.execute(sql)
     result = cursor.fetchall()
@@ -70,7 +70,7 @@ def get_message_content():
 
 def get_member_info(username):
     connection = connection_pool.get_connection()
-    cursor=connection.cursor()
+    cursor = connection.cursor()
     sql = "SELECT * FROM member WHERE username = %s;"
     val = (username,)
     cursor.execute(sql, val)
@@ -81,7 +81,7 @@ def get_member_info(username):
 
 def update_member_name(new_name, username):
     connection = connection_pool.get_connection()
-    cursor=connection.cursor()
+    cursor = connection.cursor()
     sql = "UPDATE member SET name = %s WHERE username = %s;"
     val = (new_name, username)
     cursor.execute(sql, val)

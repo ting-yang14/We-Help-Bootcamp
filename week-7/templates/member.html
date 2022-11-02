@@ -9,14 +9,14 @@ header %} 歡迎光臨，這是會員頁 {% endblock %} {% block content %}
   查詢會員姓名
   <br />
   <input type="text" id="user" name="user" />
-  <button class="button" onclick="findUsername();">查詢</button>
+  <input type="button" value="查詢" onclick="findUsername();" />
   <div id="findResult"></div>
 </div>
 <div class="content">
   更新我的名字
   <br />
   <input type="text" id="newName" name="newName" placeholder="輸入新的名字" />
-  <button class="button" onclick="updateName();">更新</button>
+  <input type="button" value="更新" onclick="updateName();" />
   <div id="updateResult"></div>
 </div>
 <hr />
