@@ -33,7 +33,6 @@ def add_member(name, username, password):
         return False
 
 def check_member(username, password):
-    # ckeck whether member have signup
     connection = connection_pool.get_connection()
     cursor=connection.cursor()
     sql = "SELECT * FROM member WHERE username = %s AND password = %s"
@@ -43,7 +42,8 @@ def check_member(username, password):
     if result: #  have member data
         cursor.close()
         connection.close()
-        return (True, result) # result=(1, 'test2', 'test', 'test', 150, datetime.datetime(2022, 10, 17, 17, 48, 29))
+        return (True, result) 
+        # result=(1, 'test2', 'test', 'test', 150, datetime.datetime(2022, 10, 17, 17, 48, 29))
     else: # signin fail
         cursor.close()
         connection.close()
@@ -66,7 +66,7 @@ def get_message_content():
     result = cursor.fetchall()
     cursor.close()
     connection.close()
-    return result # list of member name and message content 
+    return result 
 
 def get_member_info(username):
     connection = connection_pool.get_connection()

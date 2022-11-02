@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template, redirect, session, jsonify
 import flask.scaffold
 flask.helpers._endpoint_from_view_func = flask.scaffold._endpoint_from_view_func
-from flask_restful import Api, Resource
 from member_func import add_member, check_member, add_message, get_message_content, get_member_info, update_member_name
 
 app = Flask(__name__)
@@ -89,13 +88,9 @@ def patch():
     if "username" in session:
         try:
             request_params=request.get_json()
-            print(request_params)
             new_name=request_params["name"]
-            print(session["username"])
-            print(new_name)
             update_member_name(new_name,session["username"])
             session["name"]=new_name
-            print(session["name"])
             return jsonify({"ok":True})
         except:
             return jsonify({"error":True})
